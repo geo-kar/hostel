@@ -2,9 +2,9 @@
 Simpe mySQL database for hostel reservation managmnent
 
 
-This is a university assigmnet for the databases course.
+This is a university assigmnet for the course: Databases(TMA376).
 
-It works using the software phpmyadmin and txt file.
+It works using the software phpmyadmin.
 
 The file databases_sourcecode.txt constracts a simple database in order to manage a hostel reservations.
 
