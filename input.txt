@@ -1,0 +1,117 @@
+insert into building
+values(1,'thalassa1',13);
+insert into building
+values(2,'thalassa2',11);
+insert into building
+values(3,'bouno1',12);
+insert into building
+values(4,'bouno2',4);
+insert into building
+values(5,'xwrio',7);
+
+
+insert into building_telephone 
+values(1,'2682028504');
+insert into building_telephone 
+values(1,'2682028505');
+insert into building_telephone 
+values(1,'2682027896');
+insert into building_telephone 
+values(2,'2682021141');
+insert into building_telephone 
+values(3,'2397065899');
+insert into building_telephone 
+values(3,'2310686673');
+insert into building_telephone 
+values(4,'2682061222');
+insert into building_telephone 
+values(5,'2397770001');
+insert into building_telephone 
+values(5,'2310257375');
+
+
+
+
+
+
+insert into customer
+values('00001','George','Karakasis','M','Greece',6966666666,'geor@gmail.com','34');
+insert into customer
+values('00002','Hlias','Berykios','M','Greece',6946666666,'geok@gmail.com','32');
+insert into customer
+values('00003','Harris','Eleftheriadis','M','Hokins',6966656666,'peta@gmail.com','24');
+insert into customer
+values('00004','Mixalis','Kalampokas','M','Andromeda',6966366666,'andr@gmail.com','78');
+insert into customer
+values('00005','Rafail','Zoumpourlis','M','PalaiousXwrous',6966456666,'trex@gmail.com','167');
+insert into customer
+values('00006','Freddy','Jonhathan','M','Usa',0407867564534,'tred@gmail.com','44');
+
+
+insert into reservation
+values(00001,2,'2018-06-18','12:00:00','2018-06-22','12:00:00',200,'00001');
+insert into reservation
+values(00002,4,'2018-06-18','12:00:00','2018-06-21','12:00:00',380,'00002');
+insert into reservation
+values(00003,3,'2018-06-25','12:00:00','2018-06-29','12:00:00',450,'00003');
+insert into reservation
+values(00004,2,'2018-06-2','12:00:00','2018-06-7','12:00:00',400,'00004');
+insert into reservation
+values(00005,2,'2018-06-6','12:00:00','2018-06-7','12:00:00',60,'00005');
+
+insert into room
+values(001,2,35,40,50,1);
+insert into room
+values(002,4,46,58,60,2);
+insert into room
+values(003,4,46,58,60,3);
+insert into room
+values(004,4,46,58,60,4);
+insert into room
+values(005,3,46,58,60,2);
+
+insert into receives
+values(1,00001,1);
+insert into receives
+values(2,00002,1);
+insert into receives
+values(3,00003,1);
+insert into receives
+values(4,00004,1);
+insert into receives
+values(5,00005,1);
+
+insert into made
+values(001,00001,1);
+insert into made
+values(002,00002,1);
+insert into made
+values(003,00003,1);
+insert into made
+values(004,00004,1);
+insert into made
+values(005,00005,1);
+
+
+
+
+
+select fname,lname,arrival_date from customer,reservation where num_of_people=2  and customer_id=customer.id;
+
+select fname,lname,tel,arrival_date,departure_date from reservation,customer where customer.id=customer_id and reservation.id in (select reserv_id from room,made where num_of_beds=4 and room_id=room.id);
+
+select fname,lname, departure_date,departure_time from reservation,customer where customer_id=customer.id and lname='Berykios';
+
+select fname,lname,tel,country from customer order by id;
+
+select fname,lname from reservation,customer,room,made  where reservation.id=reserv_id and customer.id=customer_id and room.id=003
+UNION  
+select fname,lname from reservation,customer,room,made  where reservation.id=reserv_id and customer.id=customer_id and room_id=004;
+
+
+
+
+
+
+
+

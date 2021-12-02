@@ -1,0 +1,71 @@
+CREATE TABLE building (
+  id int(100) NOT NULL,
+  location varchar(15) NOT NULL,
+  num_of_rooms int(1) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+ CREATE TABLE building_telephone (
+  building_id int(100) NOT NULL,
+  tel varchar(14) NOT NULL,
+  PRIMARY KEY (building_id,tel),
+  FOREIGN KEY (building_id) REFERENCES building (id)
+) ;
+
+
+ CREATE TABLE customer (
+  id varchar(10) NOT NULL,
+  fname varchar(15) NOT NULL,
+  lname varchar(15) NOT NULL,
+  gender varchar(1) DEFAULT NULL,
+  country varchar(15) NOT NULL,
+  tel varchar(14) NOT NULL,
+  email varchar(20) DEFAULT NULL,
+  age varchar(3) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ;
+
+ CREATE TABLE reservation (
+  id int(255) NOT NULL,
+  num_of_people int(2) NOT NULL,
+  arrival_date date NOT NULL,
+  arrival_time time NOT NULL,
+  departure_date date NOT NULL,
+  departure_time time NOT NULL,
+  cost int(5) DEFAULT NULL,
+  customer_id varchar(10) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (customer_id) REFERENCES customer (id)
+) ;
+
+
+ CREATE TABLE room (
+  id int(10) NOT NULL,
+  num_of_beds int(3) NOT NULL,
+  low int(4) NOT NULL,
+  mid int(4) NOT NULL,
+  high int(4) NOT NULL,
+  building_id int(100) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (building_id) REFERENCES building (id)
+);
+
+
+ CREATE TABLE made (
+  room_id int(10) NOT NULL,
+  reserv_id int(255) NOT NULL,
+  num_of_rooms int(10) NOT NULL,
+  PRIMARY KEY (room_id,reserv_id),
+  FOREIGN KEY (room_id) REFERENCES room (id),
+  FOREIGN KEY (reserv_id) REFERENCES reservation (id)
+);
+
+
+ CREATE TABLE receives (
+  building_id int(100) NOT NULL,
+  reserv_id int(255) NOT NULL,
+  num_of_reservs int(255) NOT NULL,
+  PRIMARY KEY (building_id,reserv_id),
+  FOREIGN KEY (building_id) REFERENCES building (id),
+  FOREIGN KEY (reserv_id) REFERENCES reservation (id)
+);
