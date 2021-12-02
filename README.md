@@ -1,4 +1,4 @@
-# hostel
+# hotelDB
 Simpe mySQL database for hostel reservation managmnent
 
 
